@@ -52,9 +52,36 @@ fi
 #### List files in MB 
 
 - `ls -lh` 
-- `ls -lh | awk '{priunt $5, $9}'`
+- `ls -lh | awk '{print $5, $9}'`
 - `du -ah --max-depth=1 | awk '{printf "%.2f MB\t%s\n", $1/1024, $2}'`
 
+
+#### Change the default Ubuntu file type color display
+- check if the default color is set `echo $LS_COLORS`
+- check if any color is assigned for a specific filetype. example .log file type
+```bash
+echo $LS_COLORS | grep -oE '\*\.log=[^:]+' || echo "No color set for .log files"
+
+```
+- create custom .dircolors file
+- create a copy of the default color settings `dircolors -p > ~/.dircolors`
+- edit  .dircolors with you own colors
+- example `.log 04;33` - will create bold underlined yellow color for .log file type
+- more color codes:
+        - 31 → Red
+
+        - 32 → Green
+
+        - 34 → Blue
+
+        - 35 → Magenta
+
+        - 36 → Cyan
+
+        - 90 → Gray (default for backup files)
+
+- apply new color `eval "$(dircolors -b ~/.dircolors)"`
+- `source ~/.bashrc`
 
 
 ### Ubuntu server Alias settings
@@ -64,6 +91,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias cls='clear'
+alias showmb='ls -lh | awk "{print $5, $9}"'
 
 # Apache
 alias atest='apache2ctl configtest'
