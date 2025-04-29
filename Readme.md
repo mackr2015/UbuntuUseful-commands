@@ -9,6 +9,12 @@
 - restart the ssh service `systemctl restart ssh` or `systemctl restart sshd`
 
 
+### TAR with GZ 
+
+- make a tar with gz `tar -czvf archive.tar.gz -C /path/to/directory .`
+- extract the tar.gz to specific location `tar -xzvf archive.tar.gz -C /your/target/directory/`
+
+
 ### Automated backup with cron 
 
 - set up a cron task `crontab -e`
@@ -82,6 +88,28 @@ echo $LS_COLORS | grep -oE '\*\.log=[^:]+' || echo "No color set for .log files"
 
 - apply new color `eval "$(dircolors -b ~/.dircolors)"`
 - `source ~/.bashrc`
+
+
+### Increase the File size upload limit
+- run this to locate the loaded php configuration file
+- `php --ini | grep "Loaded Configuration File"`
+- this should display this file `/etc/php/your-version/php.ini` , also check this path `/etc/php/your-version/apache2/php.ini`
+- look for variable `upload_max_filesize`
+- restart apache `systemctl restart apache2`
+
+
+### Fresh Ubuntu install is missing Imagick or GD PHP extensions ### 
+
+- this needs to be installed in Ubuntu
+- `apt install php-imagick`  and `apt install php-gd`
+- installation for a specific PHP version `apt install php8.0-imagick php8.0-gd`
+- systemctl restart apache2
+
+### DB Search & Replace WP CLI
+
+- use the WP CLI commands to perform search & replace 
+- This command performs search and replace with addition flags and stores the results in the separate file
+- `wp search-replace 'old_string' 'new_string' --precise --all-tables --export=path/to/your/file.sql`
 
 
 ### Ubuntu server Alias settings
