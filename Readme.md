@@ -1,4 +1,31 @@
 
+### GitHub SSH key available on the server so you can git pull (or push) securely via SSH — and keep it working after reboots.
+
+- Copy your private SSH key for github to your server 
+`scp ~/.ssh/id_rsa root@164.125.1251:~/.ssh/github_id_rsa`
+- On the server set strict permissions `cmod 600 ~/.ssh/github_id_rsa`
+- Create or update your SSh config on the server
+`sudo nano ~/.ssh/config` 
+- add this: 
+```bash
+Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/github_id_rsa
+    IdentitiesOnly yes
+```
+- Make sure the SSH agent loads your key on login. Add this to server's `~/.bashrc` or `~/.bash_profile`
+
+```bash
+# Start ssh-agent if not running, and add GitHub key
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/github_id_rsa
+fi
+```
+- test this setup when logged in to your server run `ssh -T git@github.com`
+- you should see welcome message from GitHub. 
+
 
 ### Extend the terminal idle time / disable automatic logout
 
@@ -23,7 +50,7 @@
 ```bash
 # m h  dom mon dow   command
 # everyday at 4 am and save output in a log file
-0 4 * * * /var/www/totwebsite/wp-content/themes/maivdigital/db/db_dump.sh >> /var/www/totwebsite/wp-content/themes/maivdigital/db/dailylogfile.log 2>&1 
+0 4 * * * /var/www/totwebsite/wp-content/themes/maivdigital/db/db_dump_cron.sh >> /var/www/totwebsite/wp-content/themes/maivdigital/db/dailylogfile.log 2>&1 
 ```
 
 
@@ -109,6 +136,7 @@ echo $LS_COLORS | grep -oE '\*\.log=[^:]+' || echo "No color set for .log files"
 
 - use the WP CLI commands to perform search & replace 
 - This command performs search and replace with addition flags and stores the results in the separate file
+- Instead of applying changes to the live database, it exports the modified SQL to a new path specified below. Live database remains unchanged.
 - `wp search-replace 'old_string' 'new_string' --precise --all-tables --export=path/to/your/file.sql`
 
 
@@ -119,7 +147,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias cls='clear'
-alias showmb='ls -lh | awk "{print $5, $9}"'
+alias showmb='du -ah --max-depth=1 | awk "{printf "%.2f MB\t%s\n", $1/1024, $2}"'
 
 # Apache
 alias atest='apache2ctl configtest'
