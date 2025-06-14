@@ -40,6 +40,9 @@ fi
 
 - make a tar with gz `tar -czvf archive.tar.gz -C /path/to/directory .`
 - extract the tar.gz to specific location `tar -xzvf archive.tar.gz -C /your/target/directory/`
+- tar with gz and specify multiple directories that you want to skip `tar -czf archive.tar.gz --exclude='folder1' --exclude='folder2' --exclude='path/to/folder3' my_project/` path is relative from where you do the tar command, so no need for full path like `/var/www/websitename`
+- to extract tar.gz file `tar -xzvf your_file.tar.gz`
+- to extract to specific location `tar -xzvf your_file.tar.gz -C /path/to/destination/`
 
 
 ### Automated backup with cron 
