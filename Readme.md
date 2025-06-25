@@ -27,6 +27,18 @@ fi
 - you should see welcome message from GitHub. 
 
 
+# Enable a new virtual host site and install Certbot
+
+- make sure that A record for domain and www is pointing to the correct IP
+- when the virtual host file is ready `yoursite.conf` enable it
+- `a2ensite yoursite.conf` 
+- check the apache syntax `apache2ctl configtest` and reload apache
+- `sudo certbot --apache -d yoursite.com -d www.yoursite.com`
+- if certbot fails run `sudo certbot --apache --debug-challenges`
+- or list all loaded vhosts `apache2ctl -S`
+
+
+
 ### Extend the terminal idle time / disable automatic logout
 
 - change the sshd config `sudo nano /etc/ssh/sshd_config`
