@@ -37,6 +37,24 @@ fi
 - if certbot fails run `sudo certbot --apache --debug-challenges`
 - or list all loaded vhosts `apache2ctl -S`
 
+# MySQL settings a new user and new database
+
+- create a new user `mysql -uroot -p`
+- list all users `SELECT User, Host FROM mysql.user;`
+- 
+```sql
+-- Create the user
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'user_password';
+
+-- Grant all privileges on a specific database
+GRANT ALL PRIVILEGES ON database_name.* TO 'newuser'@'localhost';
+
+-- Apply changes
+FLUSH PRIVILEGES;
+
+```
+- import db `mysql -u username -p database_name < /path/to/your/file.sql`
+
 
 
 ### Extend the terminal idle time / disable automatic logout
