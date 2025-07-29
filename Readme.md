@@ -55,7 +55,16 @@ FLUSH PRIVILEGES;
 ```
 - import db `mysql -u username -p database_name < /path/to/your/file.sql`
 
+### Check the disk size for a specific directory
+- explanation: 
+    -h: Human readable (MB/GB)
 
+    --max-depth=1: Only show top-level directories
+
+    sort -hr: Sort by size, largest first
+
+    head -n 10: Show top 10 entries
+- ` sudo du -h /your-directory-path --max-depth=1 | sort -hr | head -n 10`
 
 ### Extend the terminal idle time / disable automatic logout
 
