@@ -55,6 +55,15 @@ FLUSH PRIVILEGES;
 ```
 - import db `mysql -u username -p database_name < /path/to/your/file.sql`
 
+
+### DB Search & Replace WP CLI
+
+- use the WP CLI commands to perform search & replace 
+- This command performs search and replace with addition flags and stores the results in the separate file
+- Instead of applying changes to the live database, it exports the modified SQL to a new path specified below. Live database remains unchanged.
+- `wp search-replace 'old_string' 'new_string' --precise --all-tables --export=path/to/your/file.sql`
+
+
 ### Check the disk size for a specific directory
 - explanation: 
     -h: Human readable (MB/GB)
@@ -65,6 +74,15 @@ FLUSH PRIVILEGES;
 
     head -n 10: Show top 10 entries
 - ` sudo du -h /your-directory-path --max-depth=1 | sort -hr | head -n 10`
+
+
+#### List files in MB 
+
+- `ls -lh` 
+- `ls -lh | awk '{print $5, $9}'`
+- `du -ah --max-depth=1 | awk '{printf "%.2f MB\t%s\n", $1/1024, $2}'`
+
+
 
 ### Extend the terminal idle time / disable automatic logout
 
@@ -124,11 +142,7 @@ else
 fi
 ```
 
-#### List files in MB 
 
-- `ls -lh` 
-- `ls -lh | awk '{print $5, $9}'`
-- `du -ah --max-depth=1 | awk '{printf "%.2f MB\t%s\n", $1/1024, $2}'`
 
 
 #### Change the default Ubuntu file type color display
@@ -174,12 +188,7 @@ echo $LS_COLORS | grep -oE '\*\.log=[^:]+' || echo "No color set for .log files"
 - installation for a specific PHP version `apt install php8.0-imagick php8.0-gd`
 - systemctl restart apache2
 
-### DB Search & Replace WP CLI
 
-- use the WP CLI commands to perform search & replace 
-- This command performs search and replace with addition flags and stores the results in the separate file
-- Instead of applying changes to the live database, it exports the modified SQL to a new path specified below. Live database remains unchanged.
-- `wp search-replace 'old_string' 'new_string' --precise --all-tables --export=path/to/your/file.sql`
 
 
 ### Ubuntu server Alias settings
