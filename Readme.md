@@ -95,7 +95,16 @@ FLUSH PRIVILEGES;
 
 ### TAR with GZ 
 
+- c → create a new archive
+
+- z → compress with gzip
+
+- v → verbose output (optional, shows progress)
+
+- f archive-name.tar.gz → name of the output file
+
 - make a tar with gz `tar -czvf archive.tar.gz -C /path/to/directory .`
+- make a tar file for multiple directories `tar -czvf arachive.tar.gz dir1 dir2 dir3`
 - extract the tar.gz to specific location `tar -xzvf archive.tar.gz -C /your/target/directory/`
 - tar with gz and specify multiple directories that you want to skip `tar -czf archive.tar.gz --exclude='folder1' --exclude='folder2' --exclude='path/to/folder3' my_project/` path is relative from where you do the tar command, so no need for full path like `/var/www/websitename`
 - to extract tar.gz file `tar -xzvf your_file.tar.gz`
@@ -188,6 +197,11 @@ echo $LS_COLORS | grep -oE '\*\.log=[^:]+' || echo "No color set for .log files"
 - installation for a specific PHP version `apt install php8.0-imagick php8.0-gd`
 - systemctl restart apache2
 
+### Apache server Conf
+
+- enable a new apache conf file `a2ensite myproject.conf` - this will create a symlink in `/etc/apache2/sites-enabled/`
+
+
 
 
 
@@ -198,7 +212,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias cls='clear'
-alias showmb='du -ah --max-depth=1 | awk "{printf "%.2f MB\t%s\n", $1/1024, $2}"'
+alias showmb="du -ah --max-depth=1 | awk '{printf "%.2f MB\t%s\n", $1/1024, $2}'"
 
 # Apache
 alias atest='apache2ctl configtest'
