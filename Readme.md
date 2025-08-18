@@ -74,7 +74,26 @@ FLUSH PRIVILEGES;
 
     head -n 10: Show top 10 entries
 - ` sudo du -h /your-directory-path --max-depth=1 | sort -hr | head -n 10`
+- Show directories size in MB made as bash function
+```bash
+# Function to show the directories size, provide user input full path
 
+show_dirs_size() {
+    # Prompt user for directory
+    read -p "Enter full directory path (default: current directory): " dir
+    dir="${dir:-.}"
+
+    # Check if directory exists
+    if [ ! -d "$dir" ]; then
+        echo "Directory '$dir' does not exist."
+        return 1
+    fi
+
+    # Display top 10 largest directories/files in MB
+    du -ah "$dir" --max-depth=1 | sort -hr | head -n 10
+}
+
+```
 
 #### List files in MB 
 
