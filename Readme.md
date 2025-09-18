@@ -2,7 +2,7 @@
 ### GitHub SSH key available on the server so you can git pull (or push) securely via SSH — and keep it working after reboots.
 
 - Copy your private SSH key for github to your server 
-`scp ~/.ssh/id_rsa root@164.125.1251:~/.ssh/github_id_rsa`
+`scp ~/.ssh/id_rsa root@ip.address:~/.ssh/github_id_rsa`
 - On the server set strict permissions `cmod 600 ~/.ssh/github_id_rsa`
 - Create or update your SSh config on the server
 `sudo nano ~/.ssh/config` 
@@ -138,7 +138,7 @@ show_dirs_size() {
 ```bash
 # m h  dom mon dow   command
 # everyday at 4 am and save output in a log file
-0 4 * * * /var/www/totwebsite/wp-content/themes/maivdigital/db/db_dump_cron.sh >> /var/www/totwebsite/wp-content/themes/maivdigital/db/dailylogfile.log 2>&1 
+0 4 * * * path/to/your/bash/script.sh >> path/to/logfile.log 2>&1 
 ```
 
 
