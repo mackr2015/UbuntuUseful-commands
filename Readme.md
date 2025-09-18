@@ -64,6 +64,11 @@ FLUSH PRIVILEGES;
 - `wp search-replace 'old_string' 'new_string' --precise --all-tables --export=path/to/your/file.sql`
 
 
+### Check database for corrupted tables
+- run this command 
+- `mysqlcheck -u root -p --check your_database_name`
+
+
 ### Check the disk size for a specific directory
 - explanation: 
     -h: Human readable (MB/GB)
@@ -75,6 +80,7 @@ FLUSH PRIVILEGES;
     head -n 10: Show top 10 entries
 - ` sudo du -h /your-directory-path --max-depth=1 | sort -hr | head -n 10`
 - Show directories size in MB made as bash function
+
 ```bash
 # Function to show the directories size, provide user input full path
 
@@ -140,6 +146,29 @@ show_dirs_size() {
 # everyday at 4 am and save output in a log file
 0 4 * * * path/to/your/bash/script.sh >> path/to/logfile.log 2>&1 
 ```
+
+
+
+### Bash script with cron for backing up WP plugins 
+```bash
+#!/bin/bash
+
+
+## TO DO +++
+
+
+
+```
+
+```bash
+## Setup cronjob
+
+# m h  dom mon dow   command
+# everyday at 4 am and save output in a log file
+0 4 * * * path/to/your/bash/script.sh >> path/to/logfile.log 2>&1 
+
+```
+
 
 
 #### Truncate the logfile 
