@@ -37,6 +37,13 @@ fi
 - if certbot fails run `sudo certbot --apache --debug-challenges`
 - or list all loaded vhosts `apache2ctl -S`
 
+
+# Check Certbot certificates and delete them
+- check which certificates are installed `certbot certificates`
+- delete the certificate `certbot delete --cert-name example.com`
+- disable the site `a2dissite example.com.cong and a2dissite example.com-le-ssl`
+- restart apache server `systemctl apache2 restart`
+
 # MySQL settings a new user and new database
 
 - create a new user `mysql -uroot -p`
@@ -65,6 +72,7 @@ FLUSH PRIVILEGES;
 
 
 ### Check database for corrupted tables
+
 - run this command 
 - `mysqlcheck -u root -p --check your_database_name`
 
@@ -131,6 +139,7 @@ show_dirs_size() {
 - make a tar with gz `tar -czvf archive.tar.gz -C /path/to/directory .`
 - make a tar file for multiple directories `tar -czvf arachive.tar.gz dir1 dir2 dir3`
 - extract the tar.gz to specific location `tar -xzvf archive.tar.gz -C /your/target/directory/`
+- make a directory and then extract tar.gz file into it `mkdir -p new_directory && tar -xzf archive.tar.gz -C new_directory`
 - tar with gz and specify multiple directories that you want to skip `tar -czf archive.tar.gz --exclude='folder1' --exclude='folder2' --exclude='path/to/folder3' my_project/` path is relative from where you do the tar command, so no need for full path like `/var/www/websitename`
 - to extract tar.gz file `tar -xzvf your_file.tar.gz`
 - to extract to specific location `tar -xzvf your_file.tar.gz -C /path/to/destination/`
